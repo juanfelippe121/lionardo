@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+  
+  header {
+    text-align: center;
+    background-image: linear-gradient(15deg, #ff00cf , #fc0fc0);
+    padding: 20px;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    margin-top: 0;
+  }
+  
+  .audio-players {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .audio-player {
+    flex: 1 0 300px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  audio {
+    width: 100%;
+  }
+  
+  .message-input {
+    display: flex;
+    margin-top: 20px;
+  }
+  
+  #messageBox {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #fc0fc0;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: #ff1493;
+  }
+  
+  .message-list {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  

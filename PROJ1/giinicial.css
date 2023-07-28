@@ -1,0 +1,76 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    text-align: center;
+    background-color: #ff7eb6;
+    padding: 20px 0;
+  }
+  
+  header h1 {
+    font-size: 48px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .option {
+    text-decoration: none;
+    font-size: 24px;
+    color: #fff;
+    padding: 15px 30px;
+    background-color: #ff4785;
+    border-radius: 50px;
+    margin: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+  
+  .option:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    background-color: #ff57a1;
+  }
+  
+  footer {
+    text-align: center;
+    background-color: #ff7eb6;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  footer p {
+    font-size: 14px;
+    color: #fff;
+  }
+  
+  /* Estilo para telas menores (smartphones, tablets, etc.) */
+  @media screen and (max-width: 768px) {
+    header h1 {
+      font-size: 36px;
+    }
+  
+    .option {
+      font-size: 20px;
+      padding: 12px 25px;
+    }
+  }
+  

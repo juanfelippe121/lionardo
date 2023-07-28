@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini chat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sweet-messages-section {
+      max-width: 600px;
+      margin: 30px auto;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h2 {
+      color: #e605c8;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .message-input {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    #messageBox {
+      flex: 1;
+      padding: 10px;
+      border: 2px solid #e605c8;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    #messageBox::placeholder {
+      color: #e605c8;
+      opacity: 0.7;
+    }
+
+    #messageBox:focus {
+      outline: none;
+    }
+
+    #sendButton {
+      background-color: #e605c8;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.2s ease;
+    }
+
+    #sendButton:hover {
+      background-color: #e50099;
+    }
+
+    .message-list {
+      margin-top: 20px;
+    }
+
+    .message {
+      position: relative;
+      background-color: #e605c8;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      font-size: 16px;
+      word-break: break-word;
+    }
+
+    .timestamp {
+      position: absolute;
+      bottom: 5px;
+      right: 10px;
+      font-size: 12px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="sweet-messages-section">
+    <h2>Coisas fofas para você</h2>
+    <div class="message-input">
+      <textarea id="messageBox" placeholder="Escreva aqui sua mensagem fofa..."></textarea>
+      <button id="sendButton" onclick="addMessage()">Enviar</button>
+    </div>
+    <div class="message-list" id="messageList">
+      <!-- Aqui serão exibidas as mensagens fofas adicionadas -->
+    </div>
+  </section>
+
+  <script>
+    // Carrega as mensagens salvas ao carregar a página
+    window.onload = function() {
+      loadMessages();
+    };
+
+    function addMessage() {
+      const messageBox = document.getElementById('messageBox');
+      const messageList = document.getElementById('messageList');
+
+      const messageText = messageBox.value.trim();
+      if (messageText !== '') {
+        const messageElement = document.createElement('div');
+        messageElement.className = 'message';
+        messageElement.textContent = messageText;
+
+        // Obtém a data e hora atual e exibe na mensagem
+        const currentDate = new Date();
+        const timestamp = document.createElement('span');
+        timestamp.className = 'timestamp';
+        timestamp.textContent = 'Enviada em: ' + currentDate.toLocaleString();
+        messageElement.appendChild(timestamp);
+
+        messageList.appendChild(messageElement);
+
+        // Salva a mensagem no localStorage
+        saveMessage({
+          text: messageText,
+          timestamp: currentDate.getTime()
+        });
+
+        // Limpar o campo de entrada após adicionar a mensagem
+        messageBox.value = '';
+      }
+    }
+
+    function saveMessage(message) {
+      // Obtém as mensagens salvas do localStorage ou cria uma lista vazia se não existir
+      const savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+
+      // Adiciona a nova mensagem à lista
+      savedMessages.push(message);
+
+      // Salva a lista atualizada no localStorage
+      localStorage.setItem('messages', JSON.stringify(savedMessages));
+    }
+
+    function loadMessages() {
+      const messageList = document.getElementById('messageList');
+
+      // Obtém as mensagens salvas do localStorage
+      const savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+
+      // Adiciona as mensagens salvas à lista
+      savedMessages.forEach(function(message) {
+        const messageElement = document.createElement('div');
+        messageElement.className = 'message';
+        messageElement.textContent = message.text;
+
+        // Exibe a data e hora em que a mensagem foi enviada
+        const timestamp = document.createElement('span');
+        timestamp.className = 'timestamp';
+        const sentDate = new Date(message.timestamp);
+        timestamp.textContent = 'Enviada em: ' + sentDate.toLocaleString();
+        messageElement.appendChild(timestamp);
+
+        messageList.appendChild(messageElement);
+      });
+    }
+  </script>
+</body>
+
+</html>
